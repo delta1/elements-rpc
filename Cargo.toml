@@ -3,6 +3,11 @@ name = "elements-rpc"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
+elements = { version = "0.21.1", features = ["serde"] }
+jsonrpc_client = { version = "0.7.1", features = ["reqwest"] }
+reqwest = "0.11.14"
+serde = "1.0.152"
+testcontainers = "0.14.0"
+tokio = { version = "1.24.2", features = ["rt", "macros"] }
+url = "2.3.1"
