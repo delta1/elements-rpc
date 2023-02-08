@@ -37,6 +37,7 @@ pub trait Rpc {
     // raw transactions
     // signer
     // util
+    async fn estimatesmartfee(&self, conf_target: u64, estimate_mode: &str) -> EstimateSmartFee;
     // wallet
     async fn createwallet(
         &self,
@@ -59,6 +60,13 @@ pub trait Rpc {
 pub struct CreateWallet {
     name: String,
     warning: String,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct EstimateSmartFee {
+    feerate: Option<f64>,
+    errors: Option<Vec<String>>,
+    blocks: u64,
 }
 
 #[derive(Debug, Deserialize)]
@@ -119,27 +127,6 @@ pub struct WalletInfo {
     // scanning: Scanning,
     descriptors: bool,
 }
-
-// #[derive(Debug, Deserialize)]
-// pub struct Progress {
-//     duration: u64,
-//     progress: f64,
-// }
-
-// #[derive(Debug)]
-// pub enum Scanning {
-//     False,
-//     Progress(Progress),
-// }
-
-// impl<'de> Deserialize<'de> for Scanning {
-//     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-//     where
-//         D: serde::Deserializer<'de>,
-//     {
-//         // deserializer.deserialize_bool(visitor)
-//     }
-// }
 
 #[jsonrpc_client::implement(Rpc)]
 pub struct Client {
@@ -231,5 +218,8 @@ mod test {
 
         let info = client.getaddressinfo(&address).await.unwrap();
         dbg!(&info);
+
+        let temp = client.estimatesmartfee(1, "conservative").await.unwrap();
+        dbg!(&temp);
     }
 }

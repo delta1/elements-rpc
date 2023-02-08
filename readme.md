@@ -1,242 +1,263 @@
-# elements rpc
+# elements rust json rpc client library
 
-blockchain
+This is a new library aiming to be a useful dependency for apps and wallets that wish to interact with an [Elements](https://github.com/ElementsProject/elements) daemon, most often used in the [Liquid](https://liquid.net/) sidechain.
 
-- getbestblockhash
-- getblock
-- getblockchaininfo
-- getblockcount
-- getblockfilter
-- getblockhash
-- getblockheader
-- getblockstats
-- getchaintips
-- getchaintxstats
-- getdifficulty
-- getmempoolancestors
-- getmempooldescendants
-- getmempoolentry
-- getmempoolinfo
-- getrawmempool
-- getsidechaininfo
-- gettxout
-- gettxoutproof
-- gettxoutsetinfo
-- preciousblock
-- pruneblockchain
-- savemempool
-- scantxoutset
-- verifychain
-- verifytxoutproof
+**NOTE: This is still a brand new Work In Progress crate**
 
-control
+If you need an existing crate you could take a look at [liquid-rpc](https://crates.io/crates/liquid-rpc)
 
-- getmemoryinfo
-- getrpcinfo
-- help
-- logging
-- stop
-- uptime
+## Design goals
 
-generating
+- lower level calls that match the RPCs directly
+- a higher level API to abstract common patterns
+- ...
 
-- combineblocksigs
-- consumecompactsketch
-- consumegetblocktxn
-- finalizecompactblock
-- generateblock
-- generatetoaddress
-- generatetodescriptor
-- getcompactsketch
-- getnewblockhex
+## RPCs
 
-mining
+From: https://elementsproject.org/en/doc/22.0.0/rpc/
 
-- getblocktemplate
-- getmininginfo
-- getnetworkhashps
-- prioritisetransaction
-- submitblock
-- submitheader
-- testproposedblock
+### blockchain
 
-network
+- [x] getbestblockhash
+- [ ] getblock
+- [ ] getblockchaininfo
+- [x] getblockcount
+- [ ] getblockfilter
+- [ ] getblockhash
+- [ ] getblockheader
+- [ ] getblockstats
+- [ ] getchaintips
+- [ ] getchaintxstats
+- [ ] getdifficulty
+- [ ] getmempoolancestors
+- [ ] getmempooldescendants
+- [ ] getmempoolentry
+- [ ] getmempoolinfo
+- [ ] getrawmempool
+- [ ] getsidechaininfo
+- [ ] gettxout
+- [ ] gettxoutproof
+- [ ] gettxoutsetinfo
+- [ ] preciousblock
+- [ ] pruneblockchain
+- [ ] savemempool
+- [ ] scantxoutset
+- [ ] verifychain
+- [ ] verifytxoutproof
 
-- addnode
-- clearbanned
-- disconnectnode
-- getaddednodeinfo
-- getconnectioncount
-- getnettotals
-- getnetworkinfo
-- getnodeaddresses
-- getpeerinfo
-- listbanned
-- ping
-- setban
-- setnetworkactive
+### control
 
-rawtransactions
+- [ ] getmemoryinfo
+- [ ] getrpcinfo
+- [ ] help
+- [ ] logging
+- [ ] stop
+- [ ] uptime
 
-- analyzepsbt
-- calculateasset
-- combinepsbt
-- combinerawtransaction
-- converttopsbt
-- createpsbt
-- createrawtransaction
-- decodepsbt
-- decoderawtransaction
-- decodescript
-- finalizepsbt
-- fundrawtransaction
-- getrawtransaction
-- parsepsbt
-- rawblindrawtransaction
-- rawissueasset
-- rawreissueasset
-- sendrawtransaction
-- signrawtransactionwithkey
-- testmempoolaccept
-- updatepsbtpegin
-- utxoupdatepsbt
+### generating
 
-signer
+- [ ] combineblocksigs
+- [ ] consumecompactsketch
+- [ ] consumegetblocktxn
+- [ ] finalizecompactblock
+- [x] generateblock
+- [ ] generatetoaddress
+- [ ] generatetodescriptor
+- [ ] getcompactsketch
+- [ ] getnewblockhex
 
-- enumeratesigners
+### mining
 
-util
+- [ ] getblocktemplate
+- [ ] getmininginfo
+- [ ] getnetworkhashps
+- [ ] prioritisetransaction
+- [ ] submitblock
+- [ ] submitheader
+- [ ] testproposedblock
 
-- createblindedaddress
-- createmultisig
-- deriveaddresses
-- dumpassetlabels
-- estimatesmartfee
-- getdescriptorinfo
-- getindexinfo
-- getpakinfo
-- signmessagewithprivkey
-- tweakfedpegscript
-- validateaddress
-- verifymessage
+### network
 
-wallet
+- [ ] addnode
+- [ ] clearbanned
+- [ ] disconnectnode
+- [ ] getaddednodeinfo
+- [ ] getconnectioncount
+- [ ] getnettotals
+- [ ] getnetworkinfo
+- [ ] getnodeaddresses
+- [ ] getpeerinfo
+- [ ] listbanned
+- [ ] ping
+- [ ] setban
+- [ ] setnetworkactive
 
-- abandontransaction
-- abortrescan
-- addmultisigaddress
-- backupwallet
-- blindrawtransaction
-- bumpfee
-- claimpegin
-- createrawpegin
-- createwallet
-- destroyamount
-- dumpblindingkey
-- dumpissuanceblindingkey
-- dumpmasterblindingkey
-- dumpprivkey
-- dumpwallet
-- encryptwallet
-- getaddressesbylabel
-- getaddressinfo
-- getbalance
-- getbalances
-- getnewaddress
-- getpeginaddress
-- getrawchangeaddress
-- getreceivedbyaddress
-- getreceivedbylabel
-- gettransaction
-- getunconfirmedbalance
-- getwalletinfo
-- getwalletpakinfo
-- importaddress
-- importblindingkey
-- importdescriptors
-- importissuanceblindingkey
-- importmasterblindingkey
-- importmulti
-- importprivkey
-- importprunedfunds
-- importpubkey
-- importwallet
-- initpegoutwallet
-- issueasset
-- keypoolrefill
-- listaddressgroupings
-- listdescriptors
-- listissuances
-- listlabels
-- listlockunspent
-- listreceivedbyaddress
-- listreceivedbylabel
-- listsinceblock
-- listtransactions
-- listunspent
-- listwalletdir
-- listwallets
-- loadwallet
-- lockunspent
-- psbtbumpfee
-- reissueasset
-- removeprunedfunds
-- rescanblockchain
-- send
-- sendmany
-- sendtoaddress
-- sendtomainchain
-- sethdseed
-- setlabel
-- settxfee
-- setwalletflag
-- signblock
-- signmessage
-- signrawtransactionwithwallet
-- unblindrawtransaction
-- unloadwallet
-- upgradewallet
-- walletcreatefundedpsbt
-- walletdisplayaddress
-- walletlock
-- walletpassphrase
-- walletpassphrasechange
-- walletprocesspsbt
+### rawtransactions
 
-zmq
+- [ ] analyzepsbt
+- [ ] calculateasset
+- [ ] combinepsbt
+- [ ] combinerawtransaction
+- [ ] converttopsbt
+- [ ] createpsbt
+- [ ] createrawtransaction
+- [ ] decodepsbt
+- [ ] decoderawtransaction
+- [ ] decodescript
+- [ ] finalizepsbt
+- [ ] fundrawtransaction
+- [ ] getrawtransaction
+- [ ] parsepsbt
+- [ ] rawblindrawtransaction
+- [ ] rawissueasset
+- [ ] rawreissueasset
+- [ ] sendrawtransaction
+- [ ] signrawtransactionwithkey
+- [ ] testmempoolaccept
+- [ ] updatepsbtpegin
+- [ ] utxoupdatepsbt
 
-- getzmqnotifications
+### signer
+
+- [ ] enumeratesigners
+
+### util
+
+- [ ] createblindedaddress
+- [ ] createmultisig
+- [ ] deriveaddresses
+- [ ] dumpassetlabels
+- [x] estimatesmartfee
+- [ ] getdescriptorinfo
+- [ ] getindexinfo
+- [ ] getpakinfo
+- [ ] signmessagewithprivkey
+- [ ] tweakfedpegscript
+- [ ] validateaddress
+- [ ] verifymessage
+
+### wallet
+
+- [ ] abandontransaction
+- [ ] abortrescan
+- [ ] addmultisigaddress
+- [ ] backupwallet
+- [ ] blindrawtransaction
+- [ ] bumpfee
+- [ ] claimpegin
+- [ ] createrawpegin
+- [x] createwallet
+- [ ] destroyamount
+- [ ] dumpblindingkey
+- [ ] dumpissuanceblindingkey
+- [ ] dumpmasterblindingkey
+- [ ] dumpprivkey
+- [ ] dumpwallet
+- [ ] encryptwallet
+- [ ] getaddressesbylabel
+- [x] getaddressinfo
+- [ ] getbalance
+- [ ] getbalances
+- [x] getnewaddress
+- [ ] getpeginaddress
+- [ ] getrawchangeaddress
+- [ ] getreceivedbyaddress
+- [ ] getreceivedbylabel
+- [ ] gettransaction
+- [ ] getunconfirmedbalance
+- [x] getwalletinfo
+- [ ] getwalletpakinfo
+- [ ] importaddress
+- [ ] importblindingkey
+- [ ] importdescriptors
+- [ ] importissuanceblindingkey
+- [ ] importmasterblindingkey
+- [ ] importmulti
+- [ ] importprivkey
+- [ ] importprunedfunds
+- [ ] importpubkey
+- [ ] importwallet
+- [ ] initpegoutwallet
+- [ ] issueasset
+- [ ] keypoolrefill
+- [ ] listaddressgroupings
+- [ ] listdescriptors
+- [ ] listissuances
+- [ ] listlabels
+- [ ] listlockunspent
+- [ ] listreceivedbyaddress
+- [ ] listreceivedbylabel
+- [ ] listsinceblock
+- [ ] listtransactions
+- [ ] listunspent
+- [ ] listwalletdir
+- [ ] listwallets
+- [ ] loadwallet
+- [ ] lockunspent
+- [ ] psbtbumpfee
+- [ ] reissueasset
+- [ ] removeprunedfunds
+- [ ] rescanblockchain
+- [ ] send
+- [ ] sendmany
+- [x] sendtoaddress
+- [ ] sendtomainchain
+- [ ] sethdseed
+- [ ] setlabel
+- [ ] settxfee
+- [ ] setwalletflag
+- [ ] signblock
+- [ ] signmessage
+- [ ] signrawtransactionwithwallet
+- [ ] unblindrawtransaction
+- [ ] unloadwallet
+- [ ] upgradewallet
+- [ ] walletcreatefundedpsbt
+- [ ] walletdisplayaddress
+- [ ] walletlock
+- [ ] walletpassphrase
+- [ ] walletpassphrasechange
+- [ ] walletprocesspsbt
+
+### zmq
+
+- [ ] getzmqnotifications
 
 ---
 
-getblockcount
-createwallet
-getwalletinfo
-rescanblockchain
-getnewaddress
-sendtoaddress
-generatetoaddress
-getaddressinfo
-getrawmempool
-gettransaction
-getrawtransaction
-importaddress
-importblindingkey
-dumpblindingkey
-dumpassetlabels
-listissuances
-importissuanceblindingkey
-decoderawtransaction
-reissueasset
-destroyamount
-dumpprivkey
-createmultisig
-getnewblockhex
-submitblock
-signblock
-combineblocksigs
-getpeginaddress
-gettxoutproof
-claimpegin
-issueasset
-reissueasset
+## used in the tutorial
+
+https://elementsproject.org/elements-code-tutorial/overview
+
+- [x] getblockcount
+- [x] createwallet
+- [x] getwalletinfo
+- [ ] rescanblockchain
+- [x] getnewaddress
+- [x] sendtoaddress
+- [x] generatetoaddress
+- [x] getaddressinfo
+- [ ] getrawmempool
+- [ ] gettransaction
+- [ ] getrawtransaction
+- [ ] importaddress
+- [ ] importblindingkey
+- [ ] dumpblindingkey
+- [ ] dumpassetlabels
+- [ ] listissuances
+- [ ] importissuanceblindingkey
+- [ ] decoderawtransaction
+- [ ] reissueasset
+- [ ] destroyamount
+- [ ] dumpprivkey
+- [ ] createmultisig
+- [ ] getnewblockhex
+- [ ] submitblock
+- [ ] signblock
+- [ ] combineblocksigs
+- [ ] getpeginaddress
+- [ ] gettxoutproof
+- [ ] claimpegin
+- [ ] issueasset
+- [ ] reissueasset
+- ...
